@@ -7,6 +7,7 @@ infoList = []
 #Loading Information from JSON file:
 with open('keyInfo.json') as content:
    data = json.load(content)
+
 for i in data.values():
     infoList.append(i)
 
@@ -17,6 +18,7 @@ conn = mysql.connector.connect(user = infoList[0],
                                 database = infoList[2],
                                 password = infoList[3]
                             )
+
 cur = conn.cursor(buffered=True)
 
 
@@ -41,7 +43,6 @@ def editStudent():
     results = cur.fetchall()
     if len(results) == 0:
         print("Student not found")
-        
     else:
         toEdit = input(f"What do you want to edit in given profile? (Name, Class, Section, Roll Number, 5th Core): ").lower()
 

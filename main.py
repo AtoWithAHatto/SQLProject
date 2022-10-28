@@ -1,25 +1,18 @@
-import mysql.connector
-import json
+import pymysql
+from keyinfo import *
 import matplotlib.pyplot as plt
 from os import system
 infoList = []
 
-#Loading Information from JSON file:
-with open('keyInfo.json') as content:
-   data = json.load(content)
-
-for i in data.values():
-    infoList.append(i)
-
+u,h,d,p = tup
 
 #Connecting to the database:
-conn = mysql.connector.connect(user = infoList[0],
-                                host = infoList[1],
-                                database = infoList[2],
-                                password = infoList[3]
-                            )
+conn = pymysql.connect(user = u,
+                       host = h,
+                       database = d,
+                       password = p)
 
-cur = conn.cursor(buffered=True)
+cur = conn.cursor()
 
 
 #Defining functions for the database:
